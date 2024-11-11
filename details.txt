@@ -2,3 +2,7 @@ sanity : https://www.sanity.io
 github : https://github.com/adrianhajdin/yc_directory
 
 https://github.com/adrianhajdin/yc_directory/blob/main/README.md
+
+figma : https://www.figma.com/design/TMGW6rLGene3cqHb4Kilz5/Pitch-Startup-App?ck_subscriber_id=2998537703&node-id=2-2&t=RshXavU0Isk3egDU-1&utm_campaign=Landing%20Page%20or%20Form%20-%207279969&utm_medium=email&utm_source=convertkit
+
+https://www.figma.com/design/TMGW6rLGene3cqHb4Kilz5/Pitch-Startup-App?node-id=62001-4701&node-type=frame&t=ACgCzEBwY1Evvkud-0

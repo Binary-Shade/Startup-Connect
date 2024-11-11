@@ -13,6 +13,10 @@
 # testing
 /coverage
 
+#readme.md
+README.md
+pdfParser.py
+details.txt
 # next.js
 /.next/
 /out/
