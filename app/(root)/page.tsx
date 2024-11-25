@@ -1,47 +1,18 @@
-import StartupCard from "@/components/StartupCard";
+import StartupCard, { StartupType } from "@/components/StartupCard";
 import SearchForm from "../../components/SearchForm";
 import { client } from "@/sanity/lib/client";
 import { STARTUP_QUERY } from "@/sanity/lib/queries";
+import { sanityFetch,SanityLive } from "@/sanity/lib/live";
 
 
 export default async function Home({searchParams}: {
   searchParams : Promise<{query?:string}>
 }) {
-
-  const posts = await client.fetch(STARTUP_QUERY)
-  console.log(JSON.stringify(posts));
-  
-  
-  
-  // const posts = [{
-  //   _createdAt : new Date(),
-  //   views: 55,
-  //   author: {
-  //     _id:1,
-  //     name: 'joe biden'
-  //   },
-  //   _id:1,
-  //   description: 'This is the startup description',
-  //   image: 'https://images.unsplash.com/photo-1592547097938-7942b22df3db?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  //   category: 'technology',
-  //   title: 'golval texh'
-  // }]
-
-  type PostCardType = {
-    _createdAt : Date,
-    views: number,
-    author: {
-      _id:number,
-      name: string
-    },
-    _id: number,
-    description: string,
-    image: string,
-    category: string
-    title: string
-}
-
   const query = (await searchParams).query 
+  const params = { search : query || null }
+  const {data : posts} = await sanityFetch( {query: STARTUP_QUERY, params})
+  
+  
   return (
     <>
       <section className="pink_container">
@@ -55,7 +26,7 @@ export default async function Home({searchParams}: {
           <>
           {
             posts?.length > 0 ? (
-              posts.map((post: PostCardType) => (
+              posts.map((post: StartupType) => (
                 <StartupCard key={post._id} post={post}/>
 
               )
@@ -66,7 +37,9 @@ export default async function Home({searchParams}: {
           }
           </>
         </ul>
+        <SanityLive />
       </section>
+      
     </>
   );
 } 
