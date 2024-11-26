@@ -17,4 +17,5 @@ sanity auto installation using npm
 
 1. live content api
 2. incremental statice regeneration [cache based]
-3. partial pre-rendering 
+3. partial pre-rendering -> static & dynamic rendering together in same route
+4. unstable_after -> schedule work to execute after response is finished

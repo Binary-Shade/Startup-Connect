@@ -24,11 +24,14 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.456.0",
+    "markdown-it": "^14.1.0",
     "next": "15.0.2",
     "next-auth": "^5.0.0-beta.25",
     "next-sanity": "^9.8.3-canary.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
     "sanity": "^3.64.2",
     "sanity-plugin-markdown": "^5.0.0",
     "server-only": "^0.0.1",
@@ -37,6 +40,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@types/markdown-it": "^14.1.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

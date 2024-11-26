@@ -6,7 +6,17 @@ const nextConfig: NextConfig = {
     remotePatterns :[{
       protocol: 'https',
       hostname: '*'
-    }]
+    }
+  ]
+  },
+  experimental: {
+    ppr: true,
+    after: true
+  },
+  devIndicators: {
+    appIsrStatus: true,
+    buildActivity: true,
+    buildActivityPosition: "bottom-right"
   }
 };
 
