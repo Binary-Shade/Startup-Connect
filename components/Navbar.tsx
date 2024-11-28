@@ -5,6 +5,8 @@ import React from 'react'
 
 const Navbar = async () => {
     const session = await auth()
+    console.log("🚀 ~ Navbar ~ session:", session.user)
+    
   return (
     <header className='px-5 py-3 bg-white shadow-sm font-work-sans text-black'>
         <nav className='flex justify-between items-center'>
@@ -25,7 +27,7 @@ const Navbar = async () => {
                                 <button type='submit'>log out</button>
                             </form>
                             <Link href={`/user/${session?.id}`}>
-                                {session?.user?.name}
+                                <Image src={session?.user.image} className='avatar' alt='user-image' width={35} height={35}/>
                             </Link>
                         </>
                     ): (

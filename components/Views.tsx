@@ -4,7 +4,7 @@ import { STARTUP_VIEWS_BY_ID } from "@/sanity/lib/queries"
 import { sanityWrite } from "@/sanity/lib/client-write"
 import { unstable_after as after } from "next/server"
 
-const View = async ({id}: {id: string}) => {
+const Views = async ({id}: {id: string}) => {
 
   const { views : totalViews } = await client.withConfig({
     useCdn: false // it get a new fresh data other than getting it from CDN cache
@@ -27,4 +27,4 @@ const View = async ({id}: {id: string}) => {
   )
 }
 
-export default View
+export default Views
