@@ -1,18 +1,81 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
-import { useState } from "react"
+import { useState, useActionState } from "react"
 import { Input } from "./ui/input"
 import { Textarea } from "./ui/textarea"
 import MDEditor from '@uiw/react-md-editor'
 import { Button } from "./ui/button"
 import { Send } from "lucide-react"
+import { formSchema } from "@/lib/validation"
+import { z } from "zod"
+import { useToast } from "@/hooks/use-toast"
+import { useRouter } from "next/navigation"
+import { createPitch } from "@/lib/action"
 
 const StartUpForm = () => {
     const [errors, setErrors] = useState<Record<string, string>>({})
     const [pitch, setPitch] = useState('')
-    const isPending = false
+    const { toast } = useToast()
+    const router = useRouter()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handleFormSubmit = async (prevState: any, formData : FormData ) =>{
+        
+        try {
+            const formValues = {
+                title: formData.get('title') as string,
+                description: formData.get('description') as string,
+                category: formData.get('category') as string,
+                link: formData.get('image') as string,
+                pitch
+            }
+            
+            console.log('wroking');
+            const res = await formSchema.parseAsync(formValues)
+            console.log("🚀 ~ handleFormSubmit ~ res:", res)
+            const result = await createPitch(prevState, formData, pitch)
+            console.log("🚀 ~ handleFormSubmit ~ result:", result)
+            if(result){
+                toast({
+                    title: "success",
+                    description: "Your startup has been created !"
+                })
+            }
+            router.push(`/startup/${result._id}`)
+            return result
+
+        } catch (error) {
+            if(error instanceof z.ZodError){
+                const fieldErr = error.flatten().fieldErrors
+                setErrors(fieldErr as unknown as Record<string, string>)
+                toast({
+                            title: "Error",
+                            description: " please check your inputs & try again !",
+                            variant : "destructive"
+                        })                
+                return {...prevState, error: "validation failed", status: "ERRROR"}
+
+            }
+            toast({
+                title: "Error",
+                description: "unexpected error ! hard to solve",
+                variant : "destructive"
+            })   
+            return {
+                ...prevState,
+                error: "unexpected error", 
+                status: "ERROR"
+            }
+            
+        }
+        
+    }
+    const [state, formAction, isPending] = useActionState(handleFormSubmit, {
+        error: "",
+        status: "INIT"
+    })
+
   return (
-    <form className="startup-form" action={()=>{}}>
+    <form className="startup-form" action={formAction}>
         <div>
             <label htmlFor="title" className="startup-form_label">
                 Title
@@ -100,3 +163,4 @@ const StartUpForm = () => {
 }
 
 export default StartUpForm
+

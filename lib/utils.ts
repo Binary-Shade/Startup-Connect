@@ -12,3 +12,7 @@ export function formatDate(date: string){
       year: "numeric"
     })
 }
+
+export function parsify<T>(response: T){
+  JSON.parse(JSON.stringify(response))
+}
