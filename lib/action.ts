@@ -17,7 +17,7 @@ export const createPitch = async (state: any, form: FormData, pitch: string) =>{
         })
     }
 
-    const {title, description, category, link} = Object.fromEntries(
+    const {title, description, category, image} = Object.fromEntries(
         Array.from(form).filter(([key]) => key !== "pitch")
     )
 
@@ -31,7 +31,7 @@ export const createPitch = async (state: any, form: FormData, pitch: string) =>{
             title,
             description,
             category,
-            image: link,
+            image,
             slug: {
                 _type: "slug",
                 current: slug

@@ -25,9 +25,10 @@ const StartUpForm = () => {
                 title: formData.get('title') as string,
                 description: formData.get('description') as string,
                 category: formData.get('category') as string,
-                link: formData.get('image') as string,
+                image: formData.get('image') as string,
                 pitch
             }
+            console.log("🚀 ~ handleFormSubmit ~ formValues:", formValues)
             
             console.log('wroking');
             const res = await formSchema.parseAsync(formValues)
@@ -40,7 +41,7 @@ const StartUpForm = () => {
                     description: "Your startup has been created !"
                 })
             }
-            router.push(`/startup/${result._id}`)
+            router.push(`/startup/${result?._id}`)
             return result
 
         } catch (error) {

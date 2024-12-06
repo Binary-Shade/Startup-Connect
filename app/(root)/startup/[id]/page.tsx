@@ -15,6 +15,8 @@ export const experimental_ppr = true;
 const page = async ({ params } : { params : Promise<{ id : string}> }) => {
   const id = (await params).id
   const post = await client.fetch(STARTUP_BY_ID, { id })  
+  console.log(post);
+  
   const md = markdownit()
   if(!post) return notFound()
   const pitchContent = md.render(post?.pitch || '')
@@ -22,7 +24,7 @@ const page = async ({ params } : { params : Promise<{ id : string}> }) => {
     <>
       <section className='pink_container !min-h-[230px]'>
         <p className='tag'>{formatDate(post._createdAt)}</p>
-        <h1 className='heading'>{post.title}</h1>
+        <h1 className='heading overflow-hidden'>{post.title}</h1>
         <p className='sub-heading !max-w-5xl'>{post.description}</p>
       </section>
       <section className='section_container'>
@@ -32,7 +34,7 @@ const page = async ({ params } : { params : Promise<{ id : string}> }) => {
             <Link href={`user/${post.author?._id}`} className='flex items-center gap-3  mb-3'>
               <Image src={post.author.image} alt='author-image' width={64} height={64} className='rounded-full drop-shadow-lg' />
               <div>
-                <h1 className='text-20-medium'>{post.author?.name}</h1>
+                <h1 className='text-black font-semibold sm:text-20-medium'>{post.author?.name}</h1>
                 <p className='!text-black-300'>@{post.author?.username}</p>
               </div>
             </Link>

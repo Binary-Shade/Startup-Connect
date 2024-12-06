@@ -1,4 +1,5 @@
 import { auth, signIn, signOut } from '@/auth'
+import { LogOut } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -23,7 +24,10 @@ const Navbar = async () => {
                                 "use server";
                                 await signOut({redirectTo: '/'})
                             }}>
-                                <button type='submit'>log out</button>
+                                <button type='submit'>
+                                    Log Out
+                                    <LogOut className='size-6  sm: hidden text-red-500'/>
+                                </button>
                             </form>
                             <Link href={`/user/${session?.id}`}>
                                 <Image src={session?.user.image} className='avatar' alt='user-image' width={35} height={35}/>

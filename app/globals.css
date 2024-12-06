@@ -56,7 +56,7 @@
     }
 
     .heading {
-        @apply uppercase bg-black px-6 py-3 font-work-sans font-extrabold text-white sm:text-[54px] sm:leading-[64px] text-[36px] leading-[46px] max-w-5xl text-center my-5;
+        @apply uppercase bg-black px-6 py-3 text-2xl font-work-sans font-extrabold text-white sm:text-[34px] sm:leading-[64px]  leading-[46px] max-w-5xl text-center my-5;
     }
 
     .sub-heading {
@@ -65,6 +65,10 @@
 
     .section_container {
         @apply px-6 py-10 max-w-7xl mx-auto;
+    }
+
+    .profile_card_container {
+        @apply px-6 py-10 w-full flex flex-row justify-evenly flex-wrap gap-20;
     }
 
     .card_grid {
@@ -89,7 +93,7 @@
     }
 
     .profile_title {
-        @apply w-11/12 bg-white border-[5px] border-black rounded-[20px] px-5 py-3 absolute -top-9 after:absolute after:content-[''] after:-top-1 after:right-0 after:-skew-y-6 after:bg-black after:-z-[1] after:rounded-[20px] after:w-full after:h-[60px] before:absolute before:content-[''] before:-bottom-1 before:left-0  before:-skew-y-6 before:w-full before:h-[60px] before:bg-black  before:-z-[1] before:rounded-[20px] shadow-100;
+        @apply w-11/12 bg-white border-[5px] border-black rounded-[20px] px-5 py-3 absolute -top-9 ;
     }
 
     .profile_image {
@@ -191,7 +195,7 @@
 
     /* view */
     .view-container {
-        @apply flex justify-end items-center mt-5 fixed bottom-3 right-3;
+        @apply flex justify-end items-center mt-5 fixed bottom-2 sm:bottom-10 left-10;
     }
 
     .view-text {
